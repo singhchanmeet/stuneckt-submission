@@ -21,6 +21,10 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/posts', postRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Stuneckt Microblogging API.')
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
