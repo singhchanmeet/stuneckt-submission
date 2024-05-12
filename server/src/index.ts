@@ -4,6 +4,7 @@ import cors from 'cors';
 import { connectToDatabase } from './mongoose.config';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
+import postRoutes from './routes/post.routes';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/posts', postRoutes);
 
 // Start the server
 app.listen(PORT, () => {
