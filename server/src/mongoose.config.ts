@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = 'mongodb://localhost:27017/my-express-app';
+const MONGODB_URI = 'mongodb+srv://chanmeetsinghsahni:NVWHTMeHfBsGUg2I@snucket.opajfux.mongodb.net/?retryWrites=true&w=majority&appName=snucket';
 
 export const connectToDatabase = async (): Promise<void> => {
   try {
