@@ -71,3 +71,30 @@ export const followUser = async (req: AuthenticatedRequest, res: Response)=> {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
+
+export const updateUserDetails = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const { username, email, name } = req.body;
+    const loggedInUserId = req.user.userId;
+
+    // Find the user to update
+    const userToUpdate: UserDocument | null = await User.findById(loggedInUserId);
+    if (!userToUpdate) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update user details
+    userToUpdate.username = username || userToUpdate.username;
+    userToUpdate.email = email || userToUpdate.email;
+    userToUpdate.name = name || userToUpdate.name;
+
+    await userToUpdate.save();
+
+    res.status(200).json({ message: 'User details updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
